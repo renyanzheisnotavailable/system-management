@@ -1,0 +1,40 @@
+spring:
+  servlet:
+    multipart:
+      maxFileSize: 20MB
+  redis:
+    host: 192.168.221.128
+    port: 6379
+    password: 102502
+    database: 1
+  mail:
+    host: smtp.163.com # 此处使用的是qq邮箱进行邮件发送
+    username: vwugbd@163.com # 发送邮件的账号（也就是本人账号）
+    password: CKPOCIPBGCSUQXHV # 账号秘钥（注意这不是登录你QQ邮箱的密码！该秘钥在开启SMTP服务时会给出。）
+    default-encoding: UTF-8
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/management_system?useSSL=false&serverTimezone=UTC
+    username: root
+
+  kafka:
+    bootstrap-servers: 192.168.221.128:9092
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+
+#    consumer:
+#      group-id: chu
+#
+#      consumer:
+##        group-id: ${spring.application.name}-test
+#        value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+##        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+##        value-deserializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+#    password: 123456
+#mybatis:
+#  mapper-locations*: classpath*:mapper/*Mapper.xml
+
