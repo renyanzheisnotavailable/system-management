@@ -1,7 +1,7 @@
 package com.example.quartz.controller;
 
 import com.example.db.domain.JobInfo;
-import com.example.quartz.JobHandler;
+import com.example.quartz.utils.JobHandler;
 import org.quartz.*;
 import org.quartz.impl.matchers.GroupMatcher;
 import org.springframework.web.bind.annotation.*;

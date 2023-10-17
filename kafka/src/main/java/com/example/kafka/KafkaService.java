@@ -1,8 +1,8 @@
 package com.example.kafka;
 
 
-import com.example.common.domain.OperLog;
 
+import com.example.api.domain.OperLog;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +14,9 @@ public class KafkaService {
     private  KafkaTemplate<String, OperLog> kafkaTemplate;
 
     public  void send(String id, OperLog operLog) {
-        kafkaTemplate.send(id,operLog);
+        kafkaTemplate.send("log", id,operLog);
     }
+
+
 
 }

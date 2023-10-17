@@ -2,16 +2,14 @@ package com.example.web.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.common.result.ResultUtil;
 import com.example.db.domain.Menu;
 import com.example.db.mapper.MenuMapper;
-import com.example.db.vo.MenuVO;
+import com.example.api.vo.MenuVO;
 import com.example.web.service.MenuService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
 * @author Chu

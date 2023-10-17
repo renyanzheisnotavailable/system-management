@@ -1,8 +1,6 @@
 package com.example.common.exception;
 
 
-import com.example.common.result.ErrorCode;
-
 /**
  * 自定义异常类
  *

@@ -2,8 +2,8 @@ package com.example.web.controller;
 
 import com.example.common.result.Result;
 import com.example.common.result.ResultUtil;
-import com.example.db.vo.MenuVO;
-import com.example.db.vo.user.UserVO;
+import com.example.api.vo.MenuVO;
+import com.example.api.vo.user.UserVO;
 import com.example.web.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

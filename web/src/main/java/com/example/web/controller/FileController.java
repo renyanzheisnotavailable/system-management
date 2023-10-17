@@ -1,15 +1,19 @@
 package com.example.web.controller;
 
-import com.example.common.result.ErrorCode;
+import com.example.api.dto.FileAddRequest;
+import com.example.api.vo.user.LoginVO;
+import com.example.common.annotation.Log;
+import com.example.common.exception.ErrorCode;
 import com.example.common.result.Result;
 import com.example.common.result.ResultUtil;
 import com.example.db.domain.File;
 import com.example.db.domain.FileType;
-import com.example.db.dto.FileAddRequest;
+
 import com.example.web.service.FileService;
 import com.example.web.service.FileTypeService;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.http.HttpHeaders;
+import org.springframework.util.DigestUtils;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 
 import java.io.FileInputStream;
@@ -143,5 +149,7 @@ public class FileController {
 //        List<FileMessage> fileList = fileMessageService.getFileByType(fid);
 //        return JSON.toJSONStringWithDateFormat(fileList,"yyyy-MM-dd HH:mm:ss", SerializerFeature.DisableCircularReferenceDetect);
 //    }
+
+
 
 }

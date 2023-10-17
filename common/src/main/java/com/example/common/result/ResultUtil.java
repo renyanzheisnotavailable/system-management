@@ -1,5 +1,7 @@
 package com.example.common.result;
 
+import com.example.common.exception.ErrorCode;
+
 public class ResultUtil<T> {
     public static <T> Result<T> ok(T t) {
         return new Result<T>(0,t,"ok");

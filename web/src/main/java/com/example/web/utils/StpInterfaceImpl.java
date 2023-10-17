@@ -1,9 +1,8 @@
 package com.example.web.utils;
 
 import cn.dev33.satoken.stp.StpInterface;
-import com.example.db.vo.user.UserVO;
+import com.example.api.vo.user.UserVO;
 import com.example.web.service.UserService;
-import org.apache.el.parser.Token;
 
 import java.util.List;
 

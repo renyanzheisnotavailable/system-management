@@ -1,15 +1,13 @@
 package com.example.common.exception;
 
 
-import com.example.common.result.ErrorCode;
-
 /**
  * 抛异常工具类
  *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://yupi.icu">编程导航知识星球</a>
  */
 public class ThrowUtils {
+
+
 
     /**
      * 条件成立则抛异常
@@ -38,9 +36,34 @@ public class ThrowUtils {
      *
      * @param condition
      * @param errorCode
+     */
+    public static void throwIfNot(boolean condition, ErrorCode errorCode) {
+        throwIf(!condition, new BusinessException(errorCode));
+    }
+
+    /**
+     * 条件成立则抛异常
+     *
+     * @param condition
+     * @param errorCode
      * @param message
      */
     public static void throwIf(boolean condition, ErrorCode errorCode, String message) {
         throwIf(condition, new BusinessException(errorCode, message));
+    }
+
+
+    public static void checkUpdate(boolean condition) {
+        throwIf(!condition, new BusinessException(ErrorCode.OPERATION_ERROR));
+    }
+
+    /**
+     * 条件成立则抛异常
+     *
+     * @param Object
+     * @param errorCode
+     */
+    public static void throwIfNull(Object Object, ErrorCode errorCode) {
+        throwIf(Object == null, new BusinessException(errorCode));
     }
 }

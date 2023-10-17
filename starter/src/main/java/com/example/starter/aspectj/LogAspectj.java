@@ -3,11 +3,11 @@ package com.example.starter.aspectj;
 
 import com.alibaba.fastjson.JSON;
 import com.example.common.annotation.Log;
-import com.example.common.domain.OperLog;
+import com.example.api.domain.OperLog;
 import com.example.common.enums.BusinessType;
-import com.example.common.utils.UserHolder;
 import com.example.db.domain.Department;
 import com.example.db.domain.User;
+import com.example.api.vo.user.UserVO;
 import com.example.kafka.KafkaService;
 
 import java.util.Date;
@@ -16,6 +16,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import com.example.web.service.DepartmentService;
+import com.example.web.utils.UserHolder;
+import com.example.web.utils.UserUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
@@ -34,11 +36,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 @Aspect
 public class LogAspectj {
 
-    @Autowired
-    KafkaTemplate template;
-
     @Resource
-    DepartmentService departmentService;
+    KafkaTemplate template;
 
     @Resource
     KafkaService kafkaService;
@@ -82,18 +81,17 @@ public class LogAspectj {
 
 
 
-        //todo
+
         //操作人员
-//        User user = UserHolder.getUser();
-//        int name = user.getId();
-//        operLog.setOperUserId(name);
-        operLog.setOperUserId(1);
+        UserVO user = UserHolder.getUser();
+        int name = user.getId();
+        operLog.setOperUserId(name);
+
 
         //部门名称
         //todo
-//        Department department = departmentService.getById(user.getDepartmentId());
-//        operLog.setDeptName(department.getName());
-        operLog.setDeptName("11");
+        operLog.setDeptId(user.getDepartmentId());
+
 
         //操作地址
         String ip = request.getRemoteAddr();
@@ -109,6 +107,7 @@ public class LogAspectj {
         operLog.setOperParam(reqParam);
 
         operLog.setJsonResult(StringUtils.substring(JSON.toJSONString(jsonResult), 0, 2000));
+        //todo
         operLog.setStatus(0);
         operLog.setErrorMsg("");
 
@@ -118,7 +117,7 @@ public class LogAspectj {
         operLog.setCostTime(totalTimeMillis);
 
         log.info("{}",operLog);
-//        kafkaService.send(requestId, operLog);
+        kafkaService.send(requestId, operLog);
         template.send("chu",requestId,operLog);
 
     }

@@ -3,7 +3,8 @@ package com.example.web.service;
 import com.example.common.result.Result;
 import com.example.db.domain.User;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.example.db.vo.user.LoginVO;
+import com.example.api.dto.UserUpdateInformationRequest;
+import com.example.api.vo.user.LoginVO;
 
 /**
 * @author Chu
@@ -14,5 +15,7 @@ public interface UserService extends IService<User> {
 
     Result<LoginVO> login(String email, String password);
 
-    Result deactivateUser(String email);
+    Result deactivateUser(int id);
+
+    Result updateInformation(UserUpdateInformationRequest user, String updateAvatar);
 }

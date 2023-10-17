@@ -2,7 +2,7 @@ package com.example.web.service;
 
 import com.example.db.domain.Menu;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.example.db.vo.MenuVO;
+import com.example.api.vo.MenuVO;
 
 import java.util.List;
 
