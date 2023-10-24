@@ -13,8 +13,6 @@ import com.example.api.vo.user.UserVO;
 import com.example.common.utils.ip.AddressUtils;
 import com.example.common.utils.ip.IpUtils;
 import com.example.common.utils.ip.ServletUtils;
-import com.example.db.domain.Department;
-import com.example.db.domain.Workplace;
 import com.example.elasticsearch.LoginforRepository;
 import com.example.web.service.DepartmentService;
 import com.example.web.service.WorkplaceService;
@@ -77,11 +75,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         //用户昵称
         logininfor.setUsername(user.getName());
         //用户部门
-        Department department = departmentService.getById(user.getDepartmentId());
-        logininfor.setDepartmentName(department.getName());
+        logininfor.setDepartId(user.getDepartmentId());
         //用户单位
-        Workplace company = workplaceService.getById(user.getCompanyId());
-        logininfor.setCompanyName(company.getName());
+        logininfor.setCompanyId(user.getCompanyId());
 
         //todo
         //ip
@@ -100,7 +96,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
         logininfor.setOs(os);
         logininfor.setMsg(message);
-        logininfor.setLoginTime(new Date(System.currentTimeMillis()));
+        logininfor.setLoginTime(new Date());
 
         Logininfor save = loginforRepository.save(logininfor);
     }

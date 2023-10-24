@@ -1,10 +1,14 @@
 package com.example.starter;
 
+import com.example.api.domain.Logininfor;
+import com.example.api.domain.OperLog;
 import com.example.common.utils.DateUtil;
 import com.example.db.domain.FileType;
 
 import com.example.db.mapper.FileTypeMapper;
 import com.example.api.vo.user.UserVO;
+import com.example.elasticsearch.LoginforRepository;
+import com.example.elasticsearch.OperLogRepository;
 import com.example.redis.RedisService;
 import com.example.web.service.FileTypeService;
 import com.example.web.service.UserService;
@@ -12,9 +16,12 @@ import com.example.web.utils.JwtUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 
 import java.util.Date;
+import java.util.List;
 
 @SpringBootTest
 class StarterApplicationTests {
@@ -26,6 +33,10 @@ class StarterApplicationTests {
     FileTypeService fileTypeService;
     @Autowired
     FileTypeMapper fileTypeMapper;
+    @Autowired
+    OperLogRepository operLogRepository;
+    @Autowired
+    LoginforRepository loginforRepository;
     @Test
     void contextLoads() {
         redisService.setCacheObject("1","1");
@@ -63,6 +74,26 @@ class StarterApplicationTests {
         System.out.println(userVO);
 
     }
+
+    @Test
+    void test6() {
+        Page<OperLog> all = operLogRepository.findAll(PageRequest.of(0, 20));
+        List<OperLog> content = all.getContent();
+        System.out.println(content);
+    }
+
+    @Test
+    void test7() {
+        Page<Logininfor> all = loginforRepository.findAll(PageRequest.of(0, 20));
+        List<Logininfor> content = all.getContent();
+        System.out.println(content);
+    }
+
+    @Test
+    void test8() {
+        System.out.println(new Date(System.currentTimeMillis()));
+    }
+
 
 
 }

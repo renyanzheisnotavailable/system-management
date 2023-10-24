@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
-@EnableElasticsearchRepositories
+@EnableElasticsearchRepositories(basePackages = "com.example.elasticsearch")
 @ComponentScan("com.example")
 @MapperScan("com.example.db.mapper")
 @SpringBootApplication
